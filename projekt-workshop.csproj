@@ -51,6 +51,10 @@
     <Compile Include="oop-workshop\src\Domain\Media\Podcast.cs" />
     <Compile Include="oop-workshop\src\Domain\Media\Song.cs" />
     <Compile Include="oop-workshop\src\Domain\Media\VideoGame.cs" />
+    <Compile Include="oop-workshop\src\Domain\Users\Admin.cs" />
+    <Compile Include="oop-workshop\src\Domain\Users\Borrower.cs" />
+    <Compile Include="oop-workshop\src\Domain\Users\Employee.cs" />
+    <Compile Include="oop-workshop\src\Domain\Users\User.cs" />
     <Compile Include="oop-workshop\src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,7 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="oop-workshop\src\Domain\Interfaces\" />
-    <Folder Include="oop-workshop\src\Domain\Users\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
