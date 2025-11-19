@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projekt_workshop
+namespace projekt_workshop.oop_workshop
 {
     internal class Program
     {

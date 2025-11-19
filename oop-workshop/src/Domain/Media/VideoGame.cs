@@ -1,4 +1,4 @@
-﻿namespace projekt_workshop.Domain.Media
+﻿namespace projekt_workshop.oop_workshop.Domain.Media
 {
     public class VideoGame
     {
