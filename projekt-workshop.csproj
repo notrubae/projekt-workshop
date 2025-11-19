@@ -46,6 +46,7 @@
     <Compile Include="oop-workshop\src\Domain\Media\App.cs" />
     <Compile Include="oop-workshop\src\Domain\Media\EBook.cs" />
     <Compile Include="oop-workshop\src\Domain\Media\Image.cs" />
+    <Compile Include="oop-workshop\src\Domain\Media\Media.cs" />
     <Compile Include="oop-workshop\src\Domain\Media\Movie.cs" />
     <Compile Include="oop-workshop\src\Domain\Media\Podcast.cs" />
     <Compile Include="oop-workshop\src\Domain\Media\Song.cs" />
