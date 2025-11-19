@@ -4,8 +4,8 @@
 ========================
 
 - Daniel Falat
-- 
-- 
+- Ivan Rosancic
+- Martin Smolek
 
 =================================
 ===== Program specification =====
