@@ -1,4 +1,4 @@
-﻿namespace projekt_workshop.Domain.Users
+﻿namespace projekt_workshop.oop_workshop.Domain.Users
 {
     public class Admin : User
     {
