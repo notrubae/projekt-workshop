@@ -43,11 +43,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="oop-workshop\src\Domain\Media\App.cs" />
+    <Compile Include="oop-workshop\src\Domain\Media\EBook.cs" />
+    <Compile Include="oop-workshop\src\Domain\Media\Image.cs" />
+    <Compile Include="oop-workshop\src\Domain\Media\Movie.cs" />
+    <Compile Include="oop-workshop\src\Domain\Media\Podcast.cs" />
+    <Compile Include="oop-workshop\src\Domain\Media\Song.cs" />
+    <Compile Include="oop-workshop\src\Domain\Media\VideoGame.cs" />
+    <Compile Include="oop-workshop\src\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="oop-workshop\doc\project_specification.md" />
+    <Content Include="oop-workshop\var\data.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="oop-workshop\src\Domain\Interfaces\" />
+    <Folder Include="oop-workshop\src\Domain\Users\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
