@@ -1,0 +1,7 @@
+C:\Users\PCIR\Desktop\SK\oP\projekt-workshop\bin\Debug\projekt-workshop.exe.config
+C:\Users\PCIR\Desktop\SK\oP\projekt-workshop\bin\Debug\projekt-workshop.exe
+C:\Users\PCIR\Desktop\SK\oP\projekt-workshop\bin\Debug\projekt-workshop.pdb
+C:\Users\PCIR\Desktop\SK\oP\projekt-workshop\obj\Debug\projekt-workshop.csproj.AssemblyReference.cache
+C:\Users\PCIR\Desktop\SK\oP\projekt-workshop\obj\Debug\projekt-workshop.csproj.CoreCompileInputs.cache
+C:\Users\PCIR\Desktop\SK\oP\projekt-workshop\obj\Debug\projekt-workshop.exe
+C:\Users\PCIR\Desktop\SK\oP\projekt-workshop\obj\Debug\projekt-workshop.pdb
