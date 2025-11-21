@@ -1,13 +1,15 @@
-﻿namespace projekt_workshop.oop_workshop.Domain.Media
+﻿using System;
+using System.Collections.Generic;   
+namespace projekt_workshop.oop_workshop.Domain.Media
 {
-    public class Podcast : Media
+    public class Movie : Media
     {
         public int ReleaseYear { get; set; }
         public List<string> Hosts { get; set; }
         public List<string> Guests { get; set; }
         public int EpisodeNumber { get; set; }
     
-        public Podcast(
+        public Movie(
             string title,
             string language,
             int releaseYear,

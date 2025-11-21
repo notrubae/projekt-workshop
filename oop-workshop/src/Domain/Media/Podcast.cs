@@ -1,4 +1,6 @@
-﻿namespace projekt_workshop.oop_workshop.Domain.Media
+﻿using System;
+using System.Collections.Generic;
+namespace projekt_workshop.oop_workshop.Domain.Media
 {
    public class Podcast : Media
    {

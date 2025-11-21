@@ -4,6 +4,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using projekt_workshop.oop_workshop.Domain;
+using projekt_workshop.oop_workshop.Domain.Media;
+using projekt_workshop.oop_workshop.Domain.Users;
+using projekt_workshop.oop_workshop.Domain.Users.DefaultNamespace;
 
 namespace projekt_workshop.oop_workshop
 {
@@ -67,14 +71,23 @@ namespace projekt_workshop.oop_workshop
                 switch (choice)
                 {
                     case "1":
-                        collection.ListAllMedia();
+                        collection.ListMedia();
                         break;
     
                     case "2":
                         Console.Write("Enter title: ");
                         var previewTitle = Console.ReadLine();
-                        var mediaItem = collection.FindMedia(previewTitle);
-                        mediaItem?.Preview();
+                        if (collection.FindMedia(previewTitle) != null)
+                        {
+                            Media mediaItem = collection.FindMedia(previewTitle);
+                            mediaItem?.Preview();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Media item {previewTitle} not found.");
+                        }
+                        
+                        
                         break;
     
                     case "3":
@@ -151,18 +164,22 @@ namespace projekt_workshop.oop_workshop
                     case "1":
                         admin.ManageUsers(users);
                         break;
-    
+                    
                     case "2":
+                        /*
                         var newMedia = new Song("Sample Song", "English", "Composer", "Singer", "Pop", "mp3", 180);
                         admin.AddMedia(collection, newMedia);
+                        */
                         break;
     
                     case "3":
+                        /*
                         Console.Write("Enter title to remove: ");
                         var removeTitle = Console.ReadLine();
                         var media = collection.FindMedia(removeTitle);
                         if (media != null)
                             admin.RemoveMedia(collection, media);
+                            */
                         break;
     
                     case "4":

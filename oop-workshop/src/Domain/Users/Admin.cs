@@ -1,6 +1,8 @@
-﻿namespace projekt_workshop.oop_workshop.Domain.Users
+﻿using System;
+using System.Collections.Generic;
+namespace projekt_workshop.oop_workshop.Domain.Users
 {
-    public class Admin : Employee
+    public class Admin : User
     {
         public Admin(string name, int age, string ssn)
             : base(name, age, ssn)

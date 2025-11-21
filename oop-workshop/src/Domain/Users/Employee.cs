@@ -1,4 +1,5 @@
-﻿namespace projekt_workshop.oop_workshop.Domain.Users
+﻿using System;
+namespace projekt_workshop.oop_workshop.Domain.Users
 {
     namespace DefaultNamespace;
     
@@ -14,13 +15,13 @@
             return "Employee";
         }
     
-        public void AddMedia(MediaCollection collection, Media media)
+        public void AddMedia(MediaCollection collection, Media.Media media)
         {
             collection.AddMedia(media);
             Console.WriteLine($"{media.Title} added to collection.");
         }
     
-        public void RemoveMedia(MediaCollection collection, Media media)
+        public void RemoveMedia(MediaCollection collection, Media.Media media)
         {
             collection.RemoveMedia(media);
             Console.WriteLine($"{media.Title} removed from collection.");

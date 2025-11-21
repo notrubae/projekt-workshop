@@ -1,4 +1,5 @@
-﻿namespace projekt_workshop.oop_workshop.Domain.Users
+﻿using System;
+namespace projekt_workshop.oop_workshop.Domain.Users
 {
     public abstract class User
     {
@@ -11,6 +12,11 @@
             Name = name;
             Age = age;
             SSN = ssn;
+        }
+
+        public void GetRoles()
+        {
+            
         }
         public abstract string GetRole();
     }

@@ -1,13 +1,17 @@
-﻿namespace projekt_workshop.oop_workshop.Domain.Users
+﻿using System;
+using System.Collections.Generic;
+using projekt_workshop.oop_workshop.Domain.Media;
+
+namespace projekt_workshop.oop_workshop.Domain.Users
 {
     public class Borrower : User
     {
-        public List<Media> BorrowedItems { get; private set; }
+        public List<Media.Media> BorrowedItems { get; private set; }
     
         public Borrower(string name, int age, string ssn)
             : base(name, age, ssn)
         {
-            BorrowedItems = new List<Media>();
+            BorrowedItems = new List<Media.Media>();
         }
     
         public override string GetRole()
@@ -15,7 +19,7 @@
             return "Borrower";
         }
     
-        public void ListMedia(List<Media> media)
+        public void ListMedia(List<Media.Media> media)
         {
             foreach (var m in media)
             {
@@ -23,30 +27,33 @@
             }
         }
     
-        public void ViewDetails(Media media)
+        public void ViewDetails(Media.Media media)
         {
             media.Preview();
         }
     
-        public void BorrowMedia(Media media)
+        public void BorrowMedia(Media.Media media)
         {
             BorrowedItems.Add(media);
             Console.WriteLine($"{Name} borrowed {media.Title}");
         }
+        // return
     
-        public void RateMedia(Media media, int rating)
+        public void RateMedia(Media.Media media, int value)
         {
             if (!BorrowedItems.Contains(media))
             {
                 Console.WriteLine("You can only rate items you borrowed.");
                 return;
             }
-    
-            media.AddRating(new Rating(rating, this));
+
+            Rating rating = new Rating(value, media);
+            
+            media.AddRating(rating);
             Console.WriteLine($"Rated {media.Title} with {rating}.");
         }
     
-        public void PerformAction(Media media)
+        public void PerformAction(Media.Media media)
         {
             media.Action();
         }
