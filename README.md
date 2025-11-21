@@ -1,310 +1,196 @@
 # projekt-workshop
-========================
-===== Team members =====
-========================
 
-- Daniel Falat
-- Ivan Rosancic
-- Martin Smolek
+## Team members
 
-=================================
-===== Program specification =====
-=================================
+* Daniel Falat
+* Ivan Rosančić
+* Martin Smolek
 
-Sønderborg’s library aims to launch a digital platform to manage and share its diverse digital media collection. The system should support multiple
-types of media, including:
-I E‑books with information about their title, author, language, number of pages, year of publication and ISBN. Users can view, download and
-read them.
-I Movies with information about their title, director, genres, release year, language and duration. Users can watch and download them.
-I Songs with information about their title, composer, singer, genre, file type, duration and language. Users can play and download them.
-I Video‑games with information about their title, genre, publisher, release year and supported platforms. Users can download, play and
-eventually complete them.
-I Apps with information about their title, version, publisher, supported platforms and file size. Users can download and execute them
-I Podcasts with information about their title, release year, host(s), guest(s), episode number and language. Users can download and listen to
-an episode and complete it.
-I Images with information about their title, resolution, file format, file size and date taken. Users can download and display an image
-Users should be able to borrow all media items, and only users who have borrowed an item may rate it.
-The system must also support three categories of users: Admin, Employee and Borrower. For each of these the system needs to know the name, age
-and social security number. As a starting point, user authentication is not required. However on startup, the program should ask the user to identify
-their role.
-I Borrower interact with the collection by listing items by type, selecting and previewing details, rating items, and performing actions specific
-to the media type.
-I Employee is responsible for managing the collection with the ability to add or remove media items
-I Admin has all of an Employee’s rights and can additionally manage Borrowers and Employees. Management covers viewing, creating,
-deleting, updating the personal information of users.
-The supported actions should be made available to all user categories in a clear and structured way.
-The console interface should guide the user with clear instructions and validate all inputs. Errors or invalid actions should not pass this filter. The
-design should anticipate growth through extensibility, ensuring that new media types or user roles can be added without disrupting existing
-functionality
+---
 
-===================================
-===== Functional Requirements =====
-===================================
+# Program specification
 
-The system must support these media types:
-E-book, Movie, Song, Video-game, App, Podcast, Image.
+Sønderborg’s library aims to launch a digital platform to manage and share its digital media collection.
+The system supports the following media types:
 
-Each media type must store its specific attributes.
+* E-books: title, author, language, number of pages, publication year, ISBN
+* Movies: title, director, genres, release year, language, duration
+* Songs: title, composer, singer, genre, file type, duration, language
+* Video-games: title, genre, publisher, release year, supported platforms
+* Apps: title, version, publisher, supported platforms, file size
+* Podcasts: title, release year, hosts, guests, episode number, language
+* Images: title, resolution, file format, file size, date taken
 
-All media items must support:
-• preview/view
-• download
-• borrow
-• rating (only by borrowers who borrowed it)
-• type-specific actions (read/watch/play/execute/etc.)
+Users can borrow media items, and only borrowers who borrowed an item may rate it.
 
-The system must support three user roles: Admin, Employee, Borrower.
+Supported user roles:
 
-All users must have: name, age, social security number.
+* Borrower: browse, preview, borrow, rate, perform actions
+* Employee: add and remove media items
+* Admin: all employee rights + manage users (view/create/update/delete)
 
-On program startup, user chooses their role (no authentication).
+Console interface must validate all input and guide the user clearly.
+The system must be extensible to support new media types or user roles.
 
-Borrowers can:
-• list media by type
-• view details
-• borrow
-• rate (only borrowed items)
-• perform media-specific actions
+---
 
-Employees can add/remove media items.
+# Functional Requirements
 
-Admins can do everything an Employee can, plus:
-• view/create/update/delete Borrowers and Employees.
+* Support media types: E-book, Movie, Song, Video-game, App, Podcast, Image
+* Each media type stores its own attributes
+* All media support:
 
-All user interactions must be available through a structured console UI.
-All input must be validated; invalid actions must be blocked.
-System must be extensible for future media types and user roles.
+  * preview/view
+  * download
+  * borrow
+  * rating (borrowers only)
+  * action specific to type
+* User roles: Admin, Employee, Borrower
+* All users have: name, age, social security number
+* Role selection at startup
+* Borrowers:
 
-=======================================
-===== Non-functional Requirements =====
-=======================================
+  * list media
+  * view details
+  * borrow
+  * rate borrowed media
+  * perform actions
+* Employees: add/remove media
+* Admins: full management of users and media
+* Console UI must validate input
+* System must be extensible
 
-Extensibility: Must allow adding new media types without rewriting core logic.
-Maintainability: Separation of concerns (media management, user management, UI).
-Usability: Console UI with clear instructions and error messages.
-Reliability: Prevent invalid borrowing, unauthorized rating, or invalid actions.
-Consistency: All media types must follow a common interface or abstract class.
+---
 
-==============================
-===== VERB–NOUN ANALYSIS =====
-==============================
+# Non-functional Requirements
 
-=== Nouns (Candidates for Classes) ===
+* Extensibility: new media types and roles can be added
+* Maintainability: clear separation of concerns
+* Usability: clear console prompts and feedback
+* Reliability: block invalid or unauthorized actions
+* Consistency: shared abstract Media structure
 
-Media (abstract)
-EBook, Movie, Song, VideoGame, App, Podcast, Image
-User (abstract)
-Admin, Employee, Borrower
-MediaCollection / Library
-Rating
-BorrowRecord
-Platform (for games/apps)
-ConsoleUI / Menu
-Validator / InputValidator
+---
 
-=== Verbs (Candidates for Methods) ===
-view / preview
-download
-read / watch / play / execute / listen / display
-borrow
-rate
-addItem
-removeItem
-listItems
-updateUser
-createUser
-deleteUser
-manageUsers
-selectRole
-validateInput
-complete (podcasts, video-games)
+# Verb–Noun Analysis
 
-=====================
-===== CRC CARDS =====
-=====================
+## Nouns
 
-=== Class: Media (abstract) ===
+* Media (abstract), EBook, Movie, Song, VideoGame, App, Podcast, Image
+* User (abstract), Admin, Employee, Borrower
+* MediaCollection, Rating, BorrowRecord
+* Platform, ConsoleUI, Validator
+
+## Verbs
+
+* view, preview
+* download
+* read, watch, play, execute, listen, display
+* borrow
+* rate
+* addItem, removeItem
+* listItems
+* updateUser, createUser, deleteUser, manageUsers
+* selectRole
+* validateInput
+* complete
+
+---
+
+# CRC Cards
+
+## Media (abstract)
 
 Responsibilities:
-Store common media attributes (title, language)
-Provide preview(
-Provide download()
-Provide type-specific action via polymorphism
-Provide borrow() support
-Manage ratings
 
-Collaborators:
-Borrower
-Rating
-MediaCollection
+* Store basic media attributes
+* Preview
+* Download
+* Type-specific action
+* Manage ratings
 
-=== Class: EBook ===
+Collaborators: Borrower, Rating, MediaCollection
 
-Responsibilities:
-Store ebook-specific info (author, pages, ISBN)
-Implement read()
+## EBook
 
-Collaborators:
-Media (parent)
-Borrower
+Responsibilities: author, pages, ISBN, read()
+Collaborators: Media, Borrower
 
-=== Class: Movie ===
+## Movie
 
-Responsibilities:
-Store director, genres, duration
-Implement watch()
+Responsibilities: director, genres, duration, watch()
+Collaborators: Media, Borrower
 
-Collaborators:
-Media
-Borrower
+## Song
 
-=== Class: Song ===
+Responsibilities: composer, singer, genre, play()
+Collaborators: Media, Borrower
 
-Responsibilities:
-Store composer, singer, genre, file type
-Implement play()
+## VideoGame
 
-Collaborators:
-Media
-Borrower
+Responsibilities: genre, publisher, platforms, play(), complete()
+Collaborators: Media, Borrower
 
-=== Class: VideoGame ===
+## App
 
-Responsibilities:
-Store publisher, release year, platforms
-Implement play() and complete()
+Responsibilities: version, platforms, file size, execute()
+Collaborators: Media, Borrower
 
-Collaborators:
-Media
-Borrower
+## Podcast
 
-=== Class: App ===
+Responsibilities: hosts, guests, episode, listen(), complete()
+Collaborators: Media, Borrower
 
-Responsibilities:
-Store version, file size, supported platforms
-Implement execute()
+## Image
 
-Collaborators:
-Media
-Borrower
+Responsibilities: resolution, format, file size, display()
+Collaborators: Media, Borrower
 
-=== Class: Podcast ===
+---
 
-Responsibilities:
-Store host(s), guest(s), episode number
-Implement listen() and complete()
+## User (abstract)
 
-Collaborators:
-Media
-Borrower
+Responsibilities: store name, age, SSN
+Collaborators: Admin, Employee, Borrower
 
-=== Class: Image ===
+## Borrower
 
-Responsibilities:
-Store resolution, format, file size
-Implement display()
+Responsibilities: list, preview, borrow, rate, perform actions
+Collaborators: Media, BorrowRecord, MediaCollection, Rating
 
-Collaborators:
-Media
-Borrower
+## Employee
 
-=== Class: User (abstract) ===
+Responsibilities: add/remove media
+Collaborators: MediaCollection
 
-Responsibilities:
-Store name, age, SSN
-Provide base user behavior
+## Admin
 
-Collaborators:
-Admin
-Employee
-Borrower
+Responsibilities: full employee rights + user management
+Collaborators: User, MediaCollection
 
-=== Class: Borrower ===
+---
 
-Responsibilities:
-List media
-View details
-Borrow media
-Rate media
-Perform type-specific actions
+## MediaCollection
 
-Collaborators:
-Media
-BorrowRecord
-MediaCollection
-Rating
+Responsibilities: store media, add/remove/search/list, track borrow operations
+Collaborators: Media, BorrowRecord, Employee, Admin, Borrower
 
-=== Class: Employee ===
+## BorrowRecord
 
-Responsibilities:
-Add media
-Remove media
+Responsibilities: track borrowed media
+Collaborators: Borrower, Media
 
-Collaborators:
-MediaCollection
+## Rating
 
-=== Class: Admin ===
+Responsibilities: store rating value
+Collaborators: Media, Borrower, BorrowRecord
 
-Responsibilities:
-Full employee rights
-Manage users (create/update/delete/list)
+## ConsoleUI
 
-Collaborators:
-User
-MediaCollection
+Responsibilities: display menus, handle input
+Collaborators: User, MediaCollection, Validator
 
-=== Class: MediaCollection (Library) ===
+## Validator
 
-Responsibilities:
-Store all media items
-Add/remove/search/list media
-Handle borrow records
-
-Collaborators:
-Media
-BorrowRecord
-Employee
-Admin
-Borrower
-
-=== Class: BorrowRecord ===
-
-Responsibilities:
-Track which borrower borrowed which media
-Validate rating permissions
-
-Collaborators:
-Borrower
-Media
-
-=== Class: Rating ===
-
-Responsibilities:
-Store rating value
-Associate with media and borrower
-
-Collaborators:
-Media
-Borrower
-BorrowRecord
-
-=== Class: ConsoleUI ===
-
-Responsibilities:
-Display menus based on role
-Collect input
-Route actions to controllers
-
-Collaborators:
-User
-MediaCollection
-Validator
-
-=== Class: Validator ===
-
-Responsibilities:
-Validate user input
-Prevent invalid actions
-
-Collaborators:
-ConsoleUI
+Responsibilities: input validation
+Collaborators: ConsoleUI
