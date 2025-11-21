@@ -1,4 +1,6 @@
-﻿namespace projekt_workshop.oop_workshop.Domain.Media
+﻿using System;
+
+namespace projekt_workshop.oop_workshop.Domain.Media
 {
     public class EBook : Media
     {

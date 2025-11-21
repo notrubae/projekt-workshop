@@ -1,44 +1,42 @@
-﻿namespace projekt_workshop.oop_workshop.Domain.Media
+﻿using System;
+using System.Collections.Generic;
+
+namespace projekt_workshop.oop_workshop.Domain.Media
 {
-    public class Podcast : Media
+    public class Movie : Media
     {
+        public string Director { get; set; }
+        public List<string> Genres { get; set; }
         public int ReleaseYear { get; set; }
-        public List<string> Hosts { get; set; }
-        public List<string> Guests { get; set; }
-        public int EpisodeNumber { get; set; }
-    
-        public Podcast(
+        public int Duration { get; set; } // minutes
+
+        public Movie(
             string title,
             string language,
+            string director,
+            List<string> genres,
             int releaseYear,
-            List<string> hosts,
-            List<string> guests,
-            int episodeNumber
+            int duration
         ) : base(title, language)
         {
+            Director = director;
+            Genres = genres;
             ReleaseYear = releaseYear;
-            Hosts = hosts;
-            Guests = guests;
-            EpisodeNumber = episodeNumber;
+            Duration = duration;
         }
-    
+
         public override void Action()
         {
-            Listen();
+            Play();
         }
-    
-        public void Listen()
+
+        public void Play()
         {
-            Console.WriteLine($"Listening to podcast: {Title}");
-            Console.WriteLine($"Episode: {EpisodeNumber}");
+            Console.WriteLine($"Playing movie: {Title}");
+            Console.WriteLine($"Director: {Director}");
+            Console.WriteLine($"Genres: {string.Join(", ", Genres)}");
             Console.WriteLine($"Year: {ReleaseYear}");
-            Console.WriteLine($"Hosts: {string.Join(", ", Hosts)}");
-            Console.WriteLine($"Guests: {string.Join(", ", Guests)}");
-        }
-    
-        public void Complete()
-        {
-            Console.WriteLine($"Completed podcast episode {EpisodeNumber} of {Title}");
+            Console.WriteLine($"Duration: {Duration} min");
         }
     }
 }
