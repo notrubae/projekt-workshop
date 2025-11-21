@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="oop-workshop\doc\project_specification.md" />
+    <Content Include="oop-workshop\var\data.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

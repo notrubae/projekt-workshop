@@ -12,8 +12,57 @@ namespace projekt_workshop.oop_workshop
             MediaCollection mediaCollection = new MediaCollection();
             List<User> users = new List<User>();
 
-            // LOAD CSV DATA
-            CsvMediaLoader.LoadMedia("var/data.csv", mediaCollection);
+            // LOAD CSV DATA - Try multiple possible paths
+            string csvPath = null;
+
+            // Try path 1: Relative to executable (3 levels up)
+            string path1 = System.IO.Path.Combine(
+                System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
+                "..", "..", "..", "var", "data.csv"
+            );
+            path1 = System.IO.Path.GetFullPath(path1);
+
+            // Try path 2: Relative to current directory
+            string path2 = System.IO.Path.GetFullPath("var/data.csv");
+
+            // Try path 3: Relative to executable (2 levels up - for different build configs)
+            string path3 = System.IO.Path.Combine(
+                System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location),
+                "..", "..", "var", "data.csv"
+            );
+            path3 = System.IO.Path.GetFullPath(path3);
+
+            // Try path 4: Direct path from project root
+            string path4 = "/Users/daniel/Documents/GitHub/projekt-workshop/oop-workshop/var/data.csv";
+
+            Console.WriteLine("Trying to find CSV file...");
+            Console.WriteLine($"Path 1: {path1} - Exists: {System.IO.File.Exists(path1)}");
+            Console.WriteLine($"Path 2: {path2} - Exists: {System.IO.File.Exists(path2)}");
+            Console.WriteLine($"Path 3: {path3} - Exists: {System.IO.File.Exists(path3)}");
+            Console.WriteLine($"Path 4: {path4} - Exists: {System.IO.File.Exists(path4)}");
+
+            if (System.IO.File.Exists(path1))
+                csvPath = path1;
+            else if (System.IO.File.Exists(path2))
+                csvPath = path2;
+            else if (System.IO.File.Exists(path3))
+                csvPath = path3;
+            else if (System.IO.File.Exists(path4))
+                csvPath = path4;
+
+            if (csvPath != null)
+            {
+                Console.WriteLine($"\nUsing CSV path: {csvPath}");
+                CsvMediaLoader.LoadMedia(csvPath, mediaCollection);
+            }
+            else
+            {
+                Console.WriteLine("\nERROR: Could not find data.csv in any of the expected locations!");
+                Console.WriteLine("Please check the file exists in: /Users/daniel/Documents/GitHub/projekt-workshop/oop-workshop/var/data.csv");
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
 
             Console.WriteLine("Welcome to the Digital Library");
             Console.WriteLine("Choose your role:");

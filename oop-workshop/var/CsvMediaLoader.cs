@@ -16,100 +16,121 @@ namespace projekt_workshop.oop_workshop.Domain.Media
                 return;
             }
 
+            Console.WriteLine($"Loading CSV from: {path}");
             string[] lines = File.ReadAllLines(path);
+            Console.WriteLine($"Total lines in CSV: {lines.Length}");
 
             // First line = header
+            int loadedCount = 0;
             for (int i = 1; i < lines.Length; i++)
             {
-                string[] row = lines[i].Split(',');
+                try
+                {
+                    string[] row = lines[i].Split(',');
 
-                string type = row[0];
-                string title = row[1];
-                string language = row[8];
+                    string type = row[0];
+                    string title = row[1];
+                    string language = row[7];  // Fixed index: Language is at index 7, not 8
 
-                switch (type)
-            {
-                case "EBook":
-                    collection.AddMedia(new EBook(
-                        title,
-                        language,
-                        row[2],                               // Author
-                        ParseInt(row[9]),                     // Pages
-                        ParseInt(row[5]),                     // Year
-                        row[6]                                // ISBN
-                    ));
-                    break;
+                    Console.WriteLine($"Processing line {i}: Type={type}, Title={title}");
 
-                case "Movie":
-                    collection.AddMedia(new Movie(
-                        title,
-                        language,
-                        row[3],                               // Director
-                        row[4].Split(';').ToList(),           // Genres
-                        ParseInt(row[5]),                     // Year
-                        ParseInt(row[10])                     // Duration
-                    ));
-                    break;
+                    switch (type)
+                    {
+                        case "EBook":
+                            collection.AddMedia(new EBook(
+                                title,
+                                language,
+                                row[2],                               // Author
+                                ParseInt(row[8]),                     // Pages (index 8, not 9)
+                                ParseInt(row[5]),                     // Year
+                                row[6]                                // ISBN
+                            ));
+                            loadedCount++;
+                            break;
 
-                case "Song":
-                    collection.AddMedia(new Song(
-                        title,
-                        language,
-                        row[11],                              // Composer
-                        row[12],                              // Singer
-                        row[4],                               // Genre
-                        row[13],                              // FileType
-                        ParseInt(row[10])                     // Duration
-                    ));
-                    break;
+                        case "Movie":
+                            collection.AddMedia(new Movie(
+                                title,
+                                language,
+                                row[3],                               // Director
+                                row[4].Split(';').ToList(),           // Genres
+                                ParseInt(row[5]),                     // Year
+                                ParseInt(row[9])                      // Duration (index 9, not 10)
+                            ));
+                            loadedCount++;
+                            break;
 
-                case "VideoGame":
-                    collection.AddMedia(new VideoGame(
-                        title,
-                        language,
-                        row[4],                               // Genre
-                        row[14],                              // Publisher
-                        ParseInt(row[5]),                     // ReleaseYear
-                        row[15].Split(';').ToList()           // Platforms
-                    ));
-                    break;
+                        case "Song":
+                            collection.AddMedia(new Song(
+                                title,
+                                language,
+                                row[11],                              // Composer
+                                row[10],                              // Singer
+                                row[4],                               // Genre
+                                row[12],                              // FileType
+                                ParseInt(row[9])                      // Duration
+                            ));
+                            loadedCount++;
+                            break;
 
-                case "App":
-                    collection.AddMedia(new App(
-                        title,
-                        language,
-                        row[16],                              // Version
-                        row[14],                              // Publisher
-                        row[15].Split(';').ToList(),          // Platforms
-                        ParseInt(row[17])                     // FileSize
-                    ));
-                    break;
+                        case "VideoGame":
+                            collection.AddMedia(new VideoGame(
+                                title,
+                                language,
+                                row[4],                               // Genre
+                                row[13],                              // Publisher
+                                ParseInt(row[5]),                     // ReleaseYear
+                                row[14].Split(';').ToList()           // Platforms
+                            ));
+                            loadedCount++;
+                            break;
 
-                case "Podcast":
-                    collection.AddMedia(new Podcast(
-                        title,
-                        language,
-                        ParseInt(row[5]),                     // ReleaseYear
-                        row[21].Split(';').ToList(),          // Hosts
-                        row[22].Split(';').ToList(),          // Guests
-                        ParseInt(row[23])                     // Episode
-                    ));
-                    break;
+                        case "App":
+                            collection.AddMedia(new App(
+                                title,
+                                language,
+                                row[15],                              // Version
+                                row[13],                              // Publisher
+                                row[14].Split(';').ToList(),          // Platforms
+                                ParseInt(row[16])                     // FileSize
+                            ));
+                            loadedCount++;
+                            break;
 
-                case "Image":
-                    DateTime dt = DateTime.TryParse(row[20], out var d) ? d : DateTime.Now;
-                    collection.AddMedia(new Image(
-                        title,
-                        language,
-                        row[18],                              // Resolution
-                        row[19],                              // FileFormat
-                        ParseInt(row[17]),                     // FileSize
-                        dt
-                    ));
-                    break;
+                        case "Podcast":
+                            collection.AddMedia(new Podcast(
+                                title,
+                                language,
+                                ParseInt(row[5]),                     // ReleaseYear
+                                row[20].Split(';').ToList(),          // Hosts
+                                row[21].Split(';').ToList(),          // Guests
+                                ParseInt(row[22])                     // Episode
+                            ));
+                            loadedCount++;
+                            break;
+
+                        case "Image":
+                            DateTime dt = DateTime.TryParse(row[19], out var d) ? d : DateTime.Now;
+                            collection.AddMedia(new Image(
+                                title,
+                                language,
+                                row[17],                              // Resolution
+                                row[18],                              // FileFormat
+                                ParseInt(row[16]),                    // FileSize
+                                dt
+                            ));
+                            loadedCount++;
+                            break;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error loading line {i}: {ex.Message}");
+                }
             }
+
+            Console.WriteLine($"Successfully loaded {loadedCount} media items.");
         }
-    }
 
         private static int ParseInt(string s)
         {
